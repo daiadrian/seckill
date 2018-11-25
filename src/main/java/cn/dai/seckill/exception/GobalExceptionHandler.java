@@ -20,6 +20,9 @@ public class GobalExceptionHandler {
         if (e instanceof BindException){
             BindException be = (BindException) e;
             return Results.faild(be.getAllErrors().get(0).getDefaultMessage());
+        }else if (e instanceof GobalException){
+            GobalException ge = (GobalException) e;
+            return Results.faild(ge.getMsg(), ge.getStatus());
         }
         return Results.faild(e.getMessage());
     }

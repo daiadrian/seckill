@@ -8,7 +8,7 @@ import java.util.Date;
 public class User {
 	private Long id;
 	@NotNull
-	@IsMobile
+	//@IsMobile
 	private String mobile;
 	@NotNull
 	private String password;

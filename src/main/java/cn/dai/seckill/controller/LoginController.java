@@ -1,6 +1,7 @@
 package cn.dai.seckill.controller;
 
 import cn.dai.seckill.entity.User;
+import cn.dai.seckill.result.CodeMsg;
 import cn.dai.seckill.result.Results;
 import cn.dai.seckill.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,14 +30,14 @@ public class LoginController {
         return "/login";
     }
 
-    @PostMapping("/login")
+    @PostMapping("/doLogin")
     @ResponseBody
-    public Results login(HttpServletResponse response,@Valid User user){
-        boolean login = loginService.login(user);
+    public Results<String> login(HttpServletResponse response,@Valid User user){
+        boolean login = loginService.login(response, user);
         if (login){
-            return Results.success("登录成功");
+            return Results.success(CodeMsg.LOGIN_SUCCESS.getMsg());
         }
-        return Results.faild("用户名或密码错误");
+        return Results.faild(CodeMsg.LOGIN_FAIL.getMsg());
     }
 
 }

@@ -2,6 +2,7 @@ package cn.dai.seckill.mapper;
 
 import cn.dai.seckill.entity.User;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 /**
@@ -11,7 +12,8 @@ import org.apache.ibatis.annotations.Select;
 @Mapper
 public interface UserMapper {
 
-    @Select("SELECT u.* FROM user WHERE mobile=#{mobile} AND password=#{password}")
-    public User getUserByMobileAndPassword(User user);
+    @Select("select u.id,u.mobile,u.password,u.salt,u.registerDate,u.lastLoginDate,u.loginCount,u.createDate,u.updateDate " +
+            "from user u where mobile = #{id}")
+    public User getByMobile(@Param("id")String mobile);
 
 }

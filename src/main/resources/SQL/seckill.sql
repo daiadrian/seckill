@@ -1,6 +1,6 @@
 CREATE TABLE `user` (
   `id` int(11) NOT NULL,
-  `mobile` varchar(50) DEFAULT NULL COMMENT '手机号码',
+  `mobile` int(11) DEFAULT NULL COMMENT '手机号码',
   `password` varchar(50) DEFAULT NULL COMMENT '密码',
   `salt` varchar(10) DEFAULT NULL,
   `registerDate` date DEFAULT NULL COMMENT '注册日期',
@@ -10,7 +10,7 @@ CREATE TABLE `user` (
   `updateDate` date DEFAULT NULL COMMENT '操作日期',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-ALTER TABLE user ADD INDEX index_mobile(mobile(50)); 
+ALTER TABLE user ADD INDEX index_mobile(mobile);
 
 CREATE TABLE `goods` (
   `id` int(11) NOT NULL,
