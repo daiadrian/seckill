@@ -52,6 +52,48 @@ public class JedisUtils {
     }
 
     /**
+     * 将值 value 关联到 key ，并将 key 的生存时间设为 seconds (以秒为单位)
+     * @param key
+     * @param value
+     * @param db
+     * @return
+     */
+    public String setex(String key, String value, int seconds, Integer db){
+        String str = null;
+        try {
+            jedis.select(db);
+            str = jedis.setex(key, seconds, value);
+        } catch (Exception e) {
+            e.printStackTrace();
+            //TODO 日志
+        }
+        return str;
+    }
+
+    /**
+     * 将 key 的值设为 value ，当且仅当 key 不存在。
+     * 若给定的 key 已经存在，则 SETNX 不做任何动作。
+     *
+     * 设置成功，返回 1 。
+     * 设置失败，返回 0 。
+     * @param key
+     * @param value
+     * @param db
+     * @return
+     */
+    public Long setnx(String key, String value, Integer db){
+        Long setnx = 0L;
+        try {
+            jedis.select(db);
+            setnx = jedis.setnx(key, value);
+        } catch (Exception e) {
+            e.printStackTrace();
+            //TODO 日志
+        }
+        return setnx;
+    }
+
+    /**
      *
      * @param key
      * @param second

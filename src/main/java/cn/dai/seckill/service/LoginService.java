@@ -16,11 +16,14 @@ import java.util.UUID;
  * @author adrian
  * @date 2018/10/27 14:13
  **/
-@Service
 public interface LoginService {
 
     public boolean login(HttpServletResponse response, User user);
 
-    public void addCookie(HttpServletResponse response, String uuid);
+    public boolean register(User user);
+
+    public User getByToken(String token);
+
+    public void addCookieAndRedis(HttpServletResponse response, String uuid, String cookieStr, User user);
 
 }

@@ -25,19 +25,29 @@ public class LoginController {
     @Autowired
     private LoginService loginService;
 
-    @GetMapping("/to_login")
+    @GetMapping("/to_login.do")
     public String toLogin(){
         return "/login";
     }
 
-    @PostMapping("/doLogin")
+    @PostMapping("/doLogin.do")
     @ResponseBody
     public Results<String> login(HttpServletResponse response,@Valid User user){
         boolean login = loginService.login(response, user);
         if (login){
             return Results.success(CodeMsg.LOGIN_SUCCESS.getMsg());
         }
-        return Results.faild(CodeMsg.LOGIN_FAIL.getMsg());
+        return Results.faild(CodeMsg.LOGIN_FAILD.getMsg());
+    }
+
+    @PostMapping("/doRegister.do")
+    @ResponseBody
+    public Results<String> register(@Valid User user){
+        boolean register = loginService.register(user);
+        if (register){
+            return Results.success(CodeMsg.REGISTER_SUCCESS.getMsg());
+        }
+        return Results.faild(CodeMsg.REGISTER_FAILD.getMsg());
     }
 
 }

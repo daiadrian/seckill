@@ -4,6 +4,7 @@ import cn.dai.seckill.result.Results;
 import org.springframework.validation.BindException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
  * @date 2018/10/27 11:11
  **/
 @ControllerAdvice
+@ResponseBody
 public class GobalExceptionHandler {
 
     @ExceptionHandler(value = Exception.class)

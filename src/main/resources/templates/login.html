@@ -49,7 +49,7 @@
 	</div>
 	<div class="row" style="margin-top:40px;">
 		     	<div class="col-md-6">
-	       	 		<button class="btn btn-primary btn-block" type="reset" onclick="reset()">重置</button>
+	       	 		<button class="btn btn-primary btn-block" onclick="register()">注册</button>
 	       	 	</div>
 	       	 	<div class="col-md-6">
 	       	 		<button class="btn btn-primary btn-block" type="submit" onclick="login()">登录</button>
@@ -72,7 +72,7 @@ function doLogin(){
 	var str = ""+salt.charAt(0)+salt.charAt(5) + inputPass +salt.charAt(0) + salt.charAt(3);
 	var password = md5(str);
 	$.ajax({
-		url: "/login/doLogin",
+		url: "/login/doLogin.do",
 	    type: "POST",
 	    data:{
 	    	mobile:$("#mobile").val(),
@@ -80,7 +80,7 @@ function doLogin(){
 	    },
 	    success:function(data){
 	    	layer.closeAll();
-	    	if(data.code == 0){
+	    	if(data.status == 200){
 	    		layer.msg("登录成功");
 	    		window.location.href="/goods/to_list";
 	    	}else{
@@ -91,6 +91,32 @@ function doLogin(){
 	    	layer.closeAll();
 	    }
 	});
+}
+function register(){
+    showLoading();
+    var inputPass = $("#password").val();
+    var salt = passsword_salt;
+    var str = ""+salt.charAt(0)+salt.charAt(5) + inputPass +salt.charAt(0) + salt.charAt(3);
+    var password = md5(str);
+    $.ajax({
+        url: "/login/doRegister.do",
+        type: "POST",
+        data:{
+            mobile:$("#mobile").val(),
+            password: password
+        },
+        success:function(data){
+            layer.closeAll();
+            if(data.status == 200){
+                layer.msg("注册成功");
+            }else{
+                layer.msg(data.msg);
+            }
+        },
+        error:function(){
+            layer.closeAll();
+        }
+    });
 }
 </script>
 </html>
