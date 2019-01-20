@@ -115,4 +115,23 @@ public class JedisUtils {
         return true;
     }
 
+
+    /**
+     *
+     * @param key
+     * @param db
+     * @return
+     */
+    public Long incr(String key, Integer db){
+        Long incr = null;
+        try {
+            jedis.select(db);
+            incr = jedis.incr(key);
+        } catch (Exception e) {
+            e.printStackTrace();
+            //TODO 日志
+        }
+        return incr;
+    }
+
 }

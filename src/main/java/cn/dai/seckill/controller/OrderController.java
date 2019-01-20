@@ -39,11 +39,11 @@ public class OrderController {
     public Results<OrderDetailVo> info(Model model, User user,
 									   @RequestParam("orderId") long orderId) {
     	if(user == null) {
-    		return Results.faild(CodeMsg.LOGIN_FAIL.getMsg());
+    		return Results.faild(CodeMsg.LOGIN_FAILD.getMsg());
     	}
     	OrderInfo order = orderService.getOrderById(orderId);
     	if(order == null) {
-    		return Results.faild(CodeMsg.LOGIN_FAIL.getMsg());
+    		return Results.faild(CodeMsg.LOGIN_FAILD.getMsg());
     	}
     	long goodsId = order.getGoodsId();
     	GoodsVo goods = goodsService.getGoodsVoByGoodsId(goodsId);

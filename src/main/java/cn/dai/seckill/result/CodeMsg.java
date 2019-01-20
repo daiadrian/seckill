@@ -11,6 +11,7 @@ public enum  CodeMsg {
     LOGIN_SUCCESS("登录成功", 200),
     REGISTER_SUCCESS("注册成功", 200),
     REGISTER_FAILD("注册失败", 501005),
+    ACCESS_LIMIT_REACHED("访问太频繁!", 501006),
     GOOD_ID_FAIL("没有此商品", 502001);
 
     private String msg;

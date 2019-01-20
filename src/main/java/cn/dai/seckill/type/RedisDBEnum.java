@@ -6,7 +6,7 @@ package cn.dai.seckill.type;
  **/
 public enum RedisDBEnum {
 
-    USER_DB(0),GOODS_DB(1);
+    USER_DB(0),GOODS_DB(0),ACCESS_BD(0);
 
     private RedisDBEnum(Integer db){
         this.db = db;

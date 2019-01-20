@@ -65,7 +65,7 @@ public class GoodsController {
 //    	}
     	List<GoodsVo> goodsList = goodsService.listGoodsVo();
     	model.addAttribute("goodsList", goodsList);
-//    	 return "goods_list";
+		// model 就是将参数存入 ，其中的所有参数 都是为了将页面渲染出来 放入其中，在返回一个静态的html源码
     	IWebContext webContext = new WebContext(request,response,
     			request.getServletContext(),request.getLocale(), model.asMap());
     	//手动渲染(goods_list指的是templates文件夹下对应html的名称)
